@@ -8,7 +8,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation Panel -->
     <div class="sidebar">
         <h1>Budget Wize</h1>
         <nav>
@@ -24,14 +24,15 @@
         <button class="chat-button">Chat with Us</button>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Area -->
+    <!-- Eventually instead of having 'User', we gotta figure out a way to may it so when the user signs up, we use the name they give -->
     <div class="main-content">
         <header>
             <h2>Hello, User</h2>
             <button class="sync-button">Sync Now</button>
         </header>
 
-        <!-- Dashboard Overview -->
+        <!-- Dashboard -->
         <div class="dashboard">
             <div class="spending-trend">
                 <h3>Spending Trends</h3>
@@ -78,9 +79,14 @@
                 </div>
             </div>
 
+            <!-- In this section we can maybe think about removing individual subscriptions, but instead create a space for users to add how many subscriptions they have and the amount -->
+            
             <div class="subscriptions-section">
+
                 <h3>Subscriptions</h3>
+
                 <div id="subscriptions" class="subscriptions-grid">
+
                     <label class="subscription-item">
                         <input type="checkbox" class="subscription" data-amount="15" />
                         <span>Netflix - $15</span>
@@ -93,22 +99,37 @@
                         <input type="checkbox" class="subscription" data-amount="20" />
                         <span>Amazon Prime - $20</span>
                     </label>
+
                 </div>
+
             </div>
 
+            <!-- So this section is where the two buttons are in the calculator -->
+
             <div class="calculator-buttons">
+
+                <!-- So this button calculates what the time table would like after you input all of your information -->
+
                 <button id="calculatePayoff" class="primary-button">Calculate Payoff Time</button>
+
+                <!-- This button basically logs the payment and the bar will show the amount that you logged -->
+                 <!-- Eventually we will need to make it so that after each month, the interest is also then added back on and not have it be manual -->
+                  <!-- Right now you would have to change the current balance after every time you log it -->
+                   
                 <button id="logPayment" class="secondary-button">Log This Month's Payment</button>
+
             </div>
 
             <div id="result" class="result-section"></div>
 
             <div class="progress-tracker">
+
                 <h3>Your Debt Payoff Progress</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
                 <p id="progressText">You have paid off $0 of $0 (0%)</p>
+
             </div>
 
             <div id="scheduleSection" class="payoff-schedule">
@@ -116,6 +137,7 @@
                 <div id="scheduleTable"></div>
                 <p id="interestSummary"></p>
             </div>
+
         </div>
     </div>
 </body>
