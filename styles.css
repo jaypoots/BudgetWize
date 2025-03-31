@@ -10,7 +10,8 @@ body {
     background-color: #f0f2f5;
 }
 
-/* Sidebar Styles */
+/* Sidebar Style */
+
 .sidebar {
     width: 250px;
     height: 100vh;
@@ -60,7 +61,8 @@ body {
     background-color: #c61c29;
 }
 
-/* Main Content Styles */
+/* Main Content Style */
+
 .main-content {
     margin-left: 250px;
     padding: 20px;
@@ -138,6 +140,7 @@ header h2 {
 }
 
 /* Credit Card Payoff Calculator */
+
 .payoff-calculator {
     background-color: #fff;
     padding: 20px;
@@ -182,6 +185,7 @@ header h2 {
 }
 
 /* Result Styling */
+
 #result {
     margin-top: 20px;
     font-size: 16px;
@@ -191,6 +195,7 @@ header h2 {
 }
 
 /* Progress Tracker */
+
 .progress-tracker {
     background-color: #fff;
     padding: 20px;
@@ -255,6 +260,7 @@ header h2 {
 }
 
 /* Media Queries for Responsiveness */
+
 @media (max-width: 768px) {
     .dashboard {
         grid-template-columns: 1fr;
