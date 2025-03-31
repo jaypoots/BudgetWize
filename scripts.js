@@ -9,16 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalInterestPaid = 0;
 
     // Placeholder for sync functionality
+
     document.querySelector('.sync-button').addEventListener('click', () => {
         alert("Syncing data...");
     });
     
     // Chat button function
+
     document.querySelector('.chat-button').addEventListener('click', () => {
         alert("Chat support is currently unavailable.");
     });
     
     // Get App button function
+
     const appButton = document.querySelector('.get-app-button');
     if (appButton) {
         appButton.addEventListener('click', () => {
@@ -26,7 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Helper function to calculate payoff time
+    // Function to calculate the payoff time
+
     function calculatePayoffTime(balance, monthlyPayment, apr) {
         let monthlyInterestRate = apr / 12 / 100;
         let months = 0;
@@ -44,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return months;
     }
     
-    // DOM Elements
+    // Document Object Model Elements
+
     const balanceInput = document.getElementById('balance');
     const monthlyPaymentInput = document.getElementById('monthlyPayment');
     const aprInput = document.getElementById('apr');
@@ -57,14 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressText = document.getElementById('progressText');
 
     // State
+
     let totalBalance = 0;
     let totalPaid = 0;
 
     // Event Listeners
+
     calculateButton.addEventListener('click', calculatePayoff);
     logPaymentButton.addEventListener('click', logPayment);
 
-    // Calculate payoff time and create schedule
+    // Calculates payoff time and creates schedule
+    // This will break down each months payments and stores it in the schedule array
+
     function calculatePayoff() {
         const balance = parseFloat(balanceInput.value);
         const monthlyPayment = parseFloat(monthlyPaymentInput.value);
@@ -87,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let schedule = [];
 
         while (remainingBalance > 0) {
+
             const interestPayment = remainingBalance * monthlyRate;
             const principalPayment = monthlyPayment - interestPayment;
             remainingBalance = remainingBalance - principalPayment;
@@ -111,8 +121,12 @@ document.addEventListener("DOMContentLoaded", () => {
         updateProgressBar(balance, 0);
     }
 
-    // Display results and create schedule table
+    // Displays the results and creates the schedule table
+
     function displayResults(months, totalInterest, schedule) {
+
+        // This part of the function is to calculate the remaining years and months that are left
+
         const years = Math.floor(months / 12);
         const remainingMonths = months % 12;
         let timeString = years > 0 ? `${years} year${years > 1 ? 's' : ''} ` : '';
@@ -125,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         // Create schedule table
+
         let tableHTML = `
             <table>
                 <tr>
@@ -135,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <th>Remaining Balance</th>
                 </tr>
         `;
+            // This section just adds each months data into the table
 
         schedule.forEach(row => {
             tableHTML += `
@@ -186,25 +202,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Event listener for the calculate button
+    
     document.getElementById('calculatePayoff').addEventListener('click', () => {
         currentBalance = parseFloat(document.getElementById('balance').value);
         monthlyPaymentAmount = parseFloat(document.getElementById('monthlyPayment').value);
         aprRate = parseFloat(document.getElementById('apr').value);
 
         // Collect all subscriptions that are checked
+
         const subscriptions = Array.from(document.querySelectorAll('.subscription:checked')).map(sub => {
             return parseFloat(sub.getAttribute('data-amount'));
         });
 
         // Calculate the current payoff time
+
         const originalPayoffTime = calculatePayoffTime(currentBalance, monthlyPaymentAmount, aprRate);
 
         // Simulate subscription cancellation: Add the savings to the monthly payment
+
         const totalSubscriptionSavings = subscriptions.reduce((sum, amount) => sum + amount, 0);
         const newMonthlyPayment = monthlyPaymentAmount + totalSubscriptionSavings;
         const newPayoffTime = calculatePayoffTime(currentBalance, newMonthlyPayment, aprRate);
 
         // Display results
+
         const resultDiv = document.getElementById('result');
         resultDiv.innerHTML = `
             <p>Original Payoff Time: ${originalPayoffTime} months</p>
@@ -214,7 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ProgressTrackerUpdate(currentBalance, Math.max(0, paidOff));
     });
 
-    // This fuction updates the progress bar. Updates The amount of debt paid and still left to pay.
+    // This fuction updates the progress bar and updates yhe amount of debt paid and still left to pay
+
     function ProgressTrackerUpdate(totalDebt, paidOff) {
         const progress = totalDebt > 0 ? (paidOff / totalDebt) * 100 : 0;
         const fill = document.getElementById('progressFill');
